@@ -281,6 +281,12 @@ def update_release_notes(repo_path: str, date_str: str, categorized: Dict[str, L
 
 
 def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
     parser = argparse.ArgumentParser(description="Generate a daily Git digest report.")
     parser.add_argument("--repo-path", default=".", help="Path to git repository root.")
     parser.add_argument("--output-dir", default=DEFAULT_REPORTS_DIR, help="Directory to save digest reports.")

@@ -22,7 +22,7 @@ param (
     
     [string]$DailyTime = "09:00",
     
-    [string]$RepoPath = (Resolve-Path "$PSScriptRoot\..\..\..").Path
+    [string]$RepoPath = (Resolve-Path "$PSScriptRoot\..\..\..\..").Path
 )
 
 $TaskName = "DailyGitDigest-$((Get-Item $RepoPath).Name)"
