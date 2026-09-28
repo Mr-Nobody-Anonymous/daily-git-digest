@@ -83,3 +83,16 @@ powershell -ExecutionPolicy Bypass -File .agents/skills/daily-git-digest/scripts
 
 ### Option B: GitHub Actions (CI/CD)
 The workflow at `.github/workflows/daily-digest.yml` runs every midnight UTC on GitHub Actions, audits commits from the past 24 hours, generates the report, and commits the updates back to your repository with `[skip ci]`.
+
+---
+
+## 🛠️ Operational Reference & Commands
+
+| Objective | Method | Command / Action |
+| :--- | :--- | :--- |
+| **Check Local Task Status** | PowerShell | `powershell -ExecutionPolicy Bypass -File .agents\skills\daily-git-digest\scripts\schedule_task.ps1 -Action Status` |
+| **Trigger Immediate Local Run** | Python CLI | `python .agents/skills/daily-git-digest/scripts/digest_generator.py --repo-path "." --output-dir "reports" --update-release-notes` |
+| **Trigger Remote Cloud Run** | GitHub CLI | `gh workflow run daily-digest.yml` |
+| **View Cloud Action Runs** | GitHub CLI | `gh run list --workflow=daily-digest.yml` |
+| **Unregister Local Task** | PowerShell | `powershell -ExecutionPolicy Bypass -File .agents\skills\daily-git-digest\scripts\schedule_task.ps1 -Action Unregister` |
+
